@@ -29,7 +29,7 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center h-16">
                 <a href="/" class="flex items-center space-x-2">
-                    <img src="{{ route('product.image', ['path' => 'products/logo_riocell.jpg']) }}" alt="Logo Rio Cell" class="w-10 h-10 rounded-xl object-cover shadow-lg">
+                    <img src="{{ asset('img/logo_riocell.jpg') }}" alt="Logo Rio Cell" class="w-10 h-10 rounded-xl object-cover shadow-lg">
                     <span class="text-xl font-bold text-gray-800 dark:text-white">Rio Cell</span>
                 </a>
                 <div class="flex items-center space-x-2 sm:space-x-4">
@@ -188,7 +188,7 @@
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
                 <div>
                     <div class="flex items-center space-x-2 mb-4">
-                        <img src="{{ route('product.image', ['path' => 'products/logo_riocell.jpg']) }}" alt="Logo Rio Cell" class="w-10 h-10 rounded-xl object-cover">
+                        <img src="{{ asset('img/logo_riocell.jpg') }}" alt="Logo Rio Cell" class="w-10 h-10 rounded-xl object-cover">
                         <span class="text-xl font-bold">Rio Cell</span>
                     </div>
                     <p class="text-gray-400 text-sm">Pusat pulsa, paket data, e-wallet, dan aksesoris HP terlengkap dengan harga terbaik.</p>

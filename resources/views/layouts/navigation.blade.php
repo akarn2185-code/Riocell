@@ -8,7 +8,7 @@
                 <!-- Logo -->
                 <div class="shrink-0 flex items-center">
                     <a href="{{ auth()->user()->role === 'owner' ? route('owner.dashboard') : route('pelanggan.home') }}" class="flex items-center">
-                        <img src="{{ route('product.image', ['path' => 'products/logo_riocell.jpg']) }}" alt="Logo Rio Cell" class="w-10 h-10 rounded-lg object-cover shadow-lg">
+                        <img src="{{ asset('img/logo_riocell.jpg') }}" alt="Logo Rio Cell" class="w-10 h-10 rounded-lg object-cover shadow-lg">
                         <span class="ml-3 text-xl font-bold text-gray-800 dark:text-white hidden sm:block">Rio Cell</span>
                     </a>
                 </div>
