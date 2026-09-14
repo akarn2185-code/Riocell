@@ -32,9 +32,18 @@ Route::get('/produk', [PublicProductController::class, 'index'])->name('products
 Route::get('/produk/{product}', [PublicProductController::class, 'show'])->name('products.show');
 Route::get('/product-image/{path}', function (string $path) {
     abort_unless(str_starts_with($path, 'products/') && !str_contains($path, '..'), 404);
-    abort_unless(Storage::disk('public')->exists($path), 404);
 
-    return response()->file(Storage::disk('public')->path($path));
+    if (Storage::disk('public')->exists($path)) {
+        return response()->file(Storage::disk('public')->path($path));
+    }
+
+    $product = Product::where('image', $path)->firstOrFail();
+    abort_unless($product->image_data && $product->image_mime, 404);
+
+    return response(base64_decode($product->image_data), 200, [
+        'Content-Type' => $product->image_mime,
+        'Cache-Control' => 'public, max-age=86400',
+    ]);
 })->where('path', '.*')->name('product.image');
 
 // Dashboard Redirect

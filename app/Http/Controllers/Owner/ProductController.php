@@ -63,7 +63,10 @@ class ProductController extends Controller
 
         // Logika Simpan Foto
         if ($request->hasFile('image')) {
-            $data['image'] = $request->file('image')->store('products', 'public');
+            $image = $request->file('image');
+            $data['image'] = $image->store('products', 'public');
+            $data['image_data'] = base64_encode($image->getContent());
+            $data['image_mime'] = $image->getMimeType();
         }
 
         Product::create($data);
@@ -105,8 +108,11 @@ class ProductController extends Controller
             if ($product->image) {
                 Storage::disk('public')->delete($product->image);
             }
-            // Simpan foto baru
-            $data['image'] = $request->file('image')->store('products', 'public');
+            // Simpan file lokal dan salinannya agar tetap tersedia setelah deploy ulang.
+            $image = $request->file('image');
+            $data['image'] = $image->store('products', 'public');
+            $data['image_data'] = base64_encode($image->getContent());
+            $data['image_mime'] = $image->getMimeType();
         }
 
         $product->update($data);
