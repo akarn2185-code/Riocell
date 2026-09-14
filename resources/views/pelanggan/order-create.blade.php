@@ -33,7 +33,7 @@
                     <div class="flex items-center">
                         <div class="w-16 h-16 sm:w-20 sm:h-20 rounded-2xl flex-shrink-0 flex items-center justify-center shadow-lg overflow-hidden">
                             @if($product->image)
-                                <img src="{{ asset('storage/' . $product->image) }}" alt="{{ $product->name }}" class="w-full h-full object-cover">
+                                <img src="{{ route('product.image', ['path' => $product->image]) }}" alt="{{ $product->name }}" class="w-full h-full object-cover">
                             @else
                                 <div class="w-full h-full flex items-center justify-center bg-gradient-to-br 
                                     @if($product->category == 'pulsa') from-red-500 to-red-600

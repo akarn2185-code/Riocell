@@ -28,7 +28,7 @@
                     
                     <div class="relative h-48 bg-gray-100 dark:bg-gray-900 flex items-center justify-center overflow-hidden">
                         @if($product->image)
-                            <img src="{{ asset('storage/' . $product->image) }}" alt="{{ $product->name }}" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
+                            <img src="{{ route('product.image', ['path' => $product->image]) }}" alt="{{ $product->name }}" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
                         @else
                             <div class="flex flex-col items-center text-gray-400">
                                 <svg class="w-12 h-12 mb-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">

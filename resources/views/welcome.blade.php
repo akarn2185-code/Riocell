@@ -29,9 +29,7 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center h-16">
                 <a href="/" class="flex items-center space-x-2">
-                    <div class="w-10 h-10 bg-gradient-to-br from-blue-500 to-purple-600 rounded-xl flex items-center justify-center shadow-lg">
-                        <span class="text-white font-bold text-lg">RC</span>
-                    </div>
+                    <img src="{{ route('product.image', ['path' => 'products/logo_riocell.jpg']) }}" alt="Logo Rio Cell" class="w-10 h-10 rounded-xl object-cover shadow-lg">
                     <span class="text-xl font-bold text-gray-800 dark:text-white">Rio Cell</span>
                 </a>
                 <div class="flex items-center space-x-2 sm:space-x-4">
@@ -85,6 +83,41 @@
                     @endauth
                 </div>
             </div>
+        </div>
+    </section>
+
+    <section class="py-12 sm:py-20 bg-gray-50 dark:bg-gray-900">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between mb-8">
+                <div>
+                    <h2 class="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white">Produk Terbaru</h2>
+                    <p class="mt-2 text-gray-600 dark:text-gray-400">Produk aktif yang baru ditambahkan oleh admin</p>
+                </div>
+                <a href="{{ route('products.index') }}" class="text-sm font-semibold text-blue-600 dark:text-blue-400 hover:underline">Lihat semua</a>
+            </div>
+
+            @if($latestProducts->isNotEmpty())
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                    @foreach($latestProducts as $product)
+                        <a href="{{ route('products.show', $product) }}" class="group bg-white dark:bg-gray-800 rounded-xl shadow-sm overflow-hidden hover:shadow-lg transition">
+                            <div class="h-44 bg-gray-100 dark:bg-gray-700 flex items-center justify-center overflow-hidden">
+                                @if($product->image)
+                                    <img src="{{ route('product.image', ['path' => $product->image]) }}" alt="{{ $product->name }}" class="w-full h-full object-cover group-hover:scale-105 transition duration-300">
+                                @else
+                                    <span class="text-6xl font-bold text-gray-300 dark:text-gray-500">{{ strtoupper(substr($product->category, 0, 1)) }}</span>
+                                @endif
+                            </div>
+                            <div class="p-4">
+                                <p class="text-xs font-semibold uppercase text-blue-600 dark:text-blue-400">{{ str_replace('_', ' ', $product->category) }}</p>
+                                <h3 class="mt-1 font-bold text-gray-900 dark:text-white line-clamp-2">{{ $product->name }}</h3>
+                                <p class="mt-3 text-lg font-extrabold text-green-600 dark:text-green-400">Rp {{ number_format($product->sell_price, 0, ',', '.') }}</p>
+                            </div>
+                        </a>
+                    @endforeach
+                </div>
+            @else
+                <p class="text-center text-gray-500 dark:text-gray-400">Belum ada produk aktif.</p>
+            @endif
         </div>
     </section>
 
@@ -155,9 +188,7 @@
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
                 <div>
                     <div class="flex items-center space-x-2 mb-4">
-                        <div class="w-10 h-10 bg-gradient-to-br from-blue-500 to-purple-600 rounded-xl flex items-center justify-center">
-                            <span class="text-white font-bold text-lg">RC</span>
-                        </div>
+                        <img src="{{ route('product.image', ['path' => 'products/logo_riocell.jpg']) }}" alt="Logo Rio Cell" class="w-10 h-10 rounded-xl object-cover">
                         <span class="text-xl font-bold">Rio Cell</span>
                     </div>
                     <p class="text-gray-400 text-sm">Pusat pulsa, paket data, e-wallet, dan aksesoris HP terlengkap dengan harga terbaik.</p>

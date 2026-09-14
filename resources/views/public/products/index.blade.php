@@ -18,9 +18,7 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center h-16">
                 <a href="/" class="flex items-center space-x-2">
-                    <div class="w-10 h-10 bg-gradient-to-br from-blue-500 to-purple-600 rounded-xl flex items-center justify-center shadow-lg">
-                        <span class="text-white font-bold text-lg">RC</span>
-                    </div>
+                    <img src="{{ route('product.image', ['path' => 'products/logo_riocell.jpg']) }}" alt="Logo Rio Cell" class="w-10 h-10 rounded-xl object-cover shadow-lg">
                     <span class="text-xl font-bold text-gray-800 dark:text-white">Rio Cell</span>
                 </a>
                 <div class="flex items-center space-x-4">
@@ -84,7 +82,7 @@
                         <a href="{{ route('products.show', $product) }}" class="group block bg-white dark:bg-gray-800 rounded-lg shadow-sm hover:shadow-lg overflow-hidden transition transform hover:-translate-y-1">
                             <div class="relative h-48 bg-gradient-to-br from-blue-50 to-purple-50 dark:from-gray-700 dark:to-gray-600 flex items-center justify-center overflow-hidden">
                                 @if($product->image)
-                                    <img src="{{ asset('storage/' . $product->image) }}" alt="{{ $product->name }}" class="w-full h-full object-cover group-hover:scale-110 transition duration-300">
+                                    <img src="{{ route('product.image', ['path' => $product->image]) }}" alt="{{ $product->name }}" class="w-full h-full object-cover group-hover:scale-110 transition duration-300">
                                 @else
                                     <div class="text-6xl">{{ $categoryLabels[$product->category] ? substr($categoryLabels[$product->category], 0, 1) : '📦' }}</div>
                                 @endif

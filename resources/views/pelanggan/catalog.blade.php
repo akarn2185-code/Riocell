@@ -36,7 +36,7 @@
                     
                     <div class="relative h-40 sm:h-48 bg-gray-100 dark:bg-gray-900 flex items-center justify-center overflow-hidden">
                         @if($product->image)
-                            <img src="{{ asset('storage/' . $product->image) }}" alt="{{ $product->name }}" 
+                            <img src="{{ route('product.image', ['path' => $product->image]) }}" alt="{{ $product->name }}"
                                 class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
                         @else
                             <div class="w-full h-full flex items-center justify-center bg-gradient-to-br 

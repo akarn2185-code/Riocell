@@ -14,18 +14,28 @@ use App\Http\Controllers\Owner\ReportController;
 use App\Http\Controllers\Owner\ChatLogController;
 use App\Http\Controllers\Owner\TukarSaldoController;
 use App\Http\Controllers\Owner\SaldoIndukController;
+use App\Models\Product;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Storage;
 
 // Landing Page
 Route::get('/', function () {
-    return view('welcome');
+    $latestProducts = Product::where('is_active', true)->latest()->take(4)->get();
+
+    return view('welcome', compact('latestProducts'));
 })->name('home');
 
 // ==================== PUBLIC ROUTES (TANPA LOGIN) ====================
 // Produk publik - bisa dilihat tanpa login
 Route::get('/produk', [PublicProductController::class, 'index'])->name('products.index');
 Route::get('/produk/{product}', [PublicProductController::class, 'show'])->name('products.show');
+Route::get('/product-image/{path}', function (string $path) {
+    abort_unless(str_starts_with($path, 'products/') && !str_contains($path, '..'), 404);
+    abort_unless(Storage::disk('public')->exists($path), 404);
+
+    return response()->file(Storage::disk('public')->path($path));
+})->where('path', '.*')->name('product.image');
 
 // Dashboard Redirect
 Route::get('/dashboard', function () {

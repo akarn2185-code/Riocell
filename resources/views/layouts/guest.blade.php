@@ -51,9 +51,7 @@
                 <!-- Logo -->
                 <div class="relative mb-10 group">
                     <div class="absolute inset-0 bg-blue-500 rounded-3xl blur-lg opacity-50 group-hover:opacity-100 transition duration-500"></div>
-                    <div class="relative w-24 h-24 bg-gradient-to-br from-slate-800 to-slate-900 border border-slate-700 rounded-3xl flex items-center justify-center transform -rotate-6 group-hover:rotate-0 transition duration-500 shadow-2xl">
-                        <span class="text-4xl font-black bg-gradient-to-tr from-blue-400 to-cyan-300 bg-clip-text text-transparent tracking-tighter">RC</span>
-                    </div>
+                    <img src="{{ route('product.image', ['path' => 'products/logo_riocell.jpg']) }}" alt="Logo Rio Cell" class="relative w-24 h-24 border border-slate-700 rounded-3xl object-cover transform -rotate-6 group-hover:rotate-0 transition duration-500 shadow-2xl">
                 </div>
                 
                 <!-- Title & Subtitle -->
@@ -116,9 +114,7 @@
             <!-- Header Mobile (Tampil cuma di HP) -->
             <div class="lg:hidden bg-slate-950 p-8 text-white text-center relative overflow-hidden">
                 <div class="absolute inset-0" style="background-image: radial-gradient(rgba(255,255,255,0.05) 1px, transparent 1px); background-size: 16px 16px;"></div>
-                <div class="relative z-10 w-16 h-16 bg-gradient-to-br from-slate-800 to-slate-900 border border-slate-700 rounded-2xl flex items-center justify-center mx-auto mb-4 shadow-lg">
-                    <span class="text-2xl font-black bg-gradient-to-tr from-blue-400 to-cyan-300 bg-clip-text text-transparent">RC</span>
-                </div>
+                <img src="{{ route('product.image', ['path' => 'products/logo_riocell.jpg']) }}" alt="Logo Rio Cell" class="relative z-10 w-16 h-16 border border-slate-700 rounded-2xl object-cover mx-auto mb-4 shadow-lg">
                 <h1 class="relative z-10 text-2xl font-extrabold tracking-tight">Rio Cell</h1>
             </div>
 
