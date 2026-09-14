@@ -30,8 +30,14 @@ Route::get('/', function () {
 // Produk publik - bisa dilihat tanpa login
 Route::get('/produk', [PublicProductController::class, 'index'])->name('products.index');
 Route::get('/produk/{product}', [PublicProductController::class, 'show'])->name('products.show');
-Route::get('/product-image/{path}', function (string $path) {
-    abort_unless(str_starts_with($path, 'products/') && !str_contains($path, '..'), 404);
+Route::get('/product-image', function (Request $request) {
+    $path = $request->query('path');
+    abort_unless(
+        is_string($path) &&
+        str_starts_with($path, 'products/') &&
+        !str_contains($path, '..'),
+        404
+    );
 
     if (Storage::disk('public')->exists($path)) {
         return response()->file(Storage::disk('public')->path($path));
@@ -44,7 +50,7 @@ Route::get('/product-image/{path}', function (string $path) {
         'Content-Type' => $product->image_mime,
         'Cache-Control' => 'public, max-age=86400',
     ]);
-})->where('path', '.*')->name('product.image');
+})->name('product.image');
 
 // Dashboard Redirect
 Route::get('/dashboard', function () {
